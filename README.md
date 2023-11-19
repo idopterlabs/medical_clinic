@@ -1,5 +1,9 @@
 # MedicalClinic
 
+Demo app showcasing real-time updates.
+
+![](docs/screenshot.png)
+
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies

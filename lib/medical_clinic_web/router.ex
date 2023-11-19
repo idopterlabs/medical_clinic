@@ -17,7 +17,7 @@ defmodule MedicalClinicWeb.Router do
   scope "/", MedicalClinicWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", QueueLive
   end
 
   # Other scopes may use custom stacks.
