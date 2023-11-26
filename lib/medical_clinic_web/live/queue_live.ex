@@ -1,8 +1,10 @@
 defmodule MedicalClinicWeb.QueueLive do
   use MedicalClinicWeb, :live_view
 
+  alias MedicalClinic.Appointments
+
   def mount(_params, _session, socket) do
-    socket = assign(socket, appointments: appointment_fixtures())
+    socket = assign(socket, appointments: Appointments.list_appointments())
     {:ok, socket}
   end
 
@@ -31,30 +33,5 @@ defmodule MedicalClinicWeb.QueueLive do
       </p>
     </div>
     """
-  end
-
-  defp appointment_fixtures do
-    [
-      %{
-        id: 1,
-        patient: %{name: "Alice"},
-        is_checked_in: false
-      },
-      %{
-        id: 2,
-        patient: %{name: "Bob"},
-        is_checked_in: false
-      },
-      %{
-        id: 3,
-        patient: %{name: "Charlie"},
-        is_checked_in: false
-      },
-      %{
-        id: 4,
-        patient: %{name: "Daisy"},
-        is_checked_in: false
-      }
-    ]
   end
 end

@@ -1,11 +1,39 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     MedicalClinic.Repo.insert!(%MedicalClinic.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+alias MedicalClinic.Appointments.Patient
+alias MedicalClinic.Appointments.Appointment
+alias MedicalClinic.Repo
+
+patients = [
+  %{
+    name: "Alice"
+  },
+  %{
+    name: "Bob"
+  },
+  %{
+    name: "Charlie"
+  },
+  %{
+    name: "Daisy"
+  },
+  %{
+    name: "Elliot"
+  },
+  %{
+    name: "Fabian"
+  }
+]
+
+now = DateTime.utc_now()
+
+Enum.with_index(patients, fn patient, i ->
+  patient_changeset = Patient.changeset(%Patient{}, patient)
+  patient = Repo.insert!(patient_changeset)
+
+  appt = %{
+    scheduled_for: DateTime.add(now, 4 + i, :hour),
+    patient_id: patient.id
+  }
+
+  appt_changeset = Appointment.changeset(%Appointment{}, appt)
+  Repo.insert!(appt_changeset)
+end)
