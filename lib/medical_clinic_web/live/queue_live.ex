@@ -3,13 +3,34 @@ defmodule MedicalClinicWeb.QueueLive do
 
   alias MedicalClinic.Appointments
 
+  @topic "check-in"
+  @pub_sub MedicalClinic.PubSub
+
   def mount(_params, _session, socket) do
+    if connected?(socket) do
+      Phoenix.PubSub.subscribe(@pub_sub, @topic)
+    end
+
     socket = assign(socket, appointments: Appointments.list_appointments())
     {:ok, socket}
   end
 
   def handle_event("check-in", %{"id" => appointment_id}, socket) do
     Appointments.toggle_checkl_in!(appointment_id)
+
+    Phoenix.PubSub.broadcast(@pub_sub, @topic, :update)
+
+    {:noreply, socket}
+  end
+
+  def handle_info(:update, socket) do
+    socket =
+      assign(
+        socket,
+        :appointments,
+        Appointments.list_appointments()
+      )
+
     {:noreply, socket}
   end
 
