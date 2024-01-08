@@ -16,9 +16,9 @@ defmodule MedicalClinicWeb.AppointmentEntry do
           <div :if={!assigns.appointment.is_checked_in} class="p-2">
             <button
               class="bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition-colors duration-300"
-              phx-value-id={assigns.appointment.id}
               data-confirm="Are you sure?"
               phx-click="check-in"
+              phx-value-id={assigns.appointment.id}
             >
               Check-in
             </button>

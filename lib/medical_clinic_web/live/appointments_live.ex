@@ -1,4 +1,4 @@
-defmodule MedicalClinicWeb.QueueLive do
+defmodule MedicalClinicWeb.AppointmentsLive do
   use MedicalClinicWeb, :live_view
 
   alias MedicalClinic.Appointments

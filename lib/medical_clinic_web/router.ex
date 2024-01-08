@@ -17,7 +17,7 @@ defmodule MedicalClinicWeb.Router do
   scope "/", MedicalClinicWeb do
     pipe_through :browser
 
-    live "/", QueueLive
+    live "/", AppointmentsLive
   end
 
   # Other scopes may use custom stacks.
