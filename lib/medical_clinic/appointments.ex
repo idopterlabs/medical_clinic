@@ -16,7 +16,7 @@ defmodule MedicalClinic.Appointments do
     |> Repo.preload(:patient)
   end
 
-  def toggle_checkl_in!(appointment_id) do
+  def toggle_check_in!(appointment_id) do
     appt = Repo.get(Appointment, appointment_id)
 
     changeset =

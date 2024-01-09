@@ -17,7 +17,7 @@ defmodule MedicalClinicWeb.AppointmentsLive do
   end
 
   def handle_event("check-in", %{"id" => appointment_id}, socket) do
-    Appointments.toggle_checkl_in!(appointment_id)
+    Appointments.toggle_check_in!(appointment_id)
 
     Phoenix.PubSub.broadcast(@pub_sub, @topic, :update)
 
