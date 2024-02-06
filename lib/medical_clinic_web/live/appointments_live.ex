@@ -37,7 +37,7 @@ defmodule MedicalClinicWeb.AppointmentsLive do
 
   def render(assigns) do
     ~H"""
-    <div :for={appointment <- assigns.appointments}>
+    <div :for={appointment <- @appointments}>
       <.live_component module={AppointmentEntry} id={appointment.id} appointment={appointment} />
     </div>
     """
